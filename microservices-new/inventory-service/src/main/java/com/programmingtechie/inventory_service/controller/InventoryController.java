@@ -1,11 +1,14 @@
 package com.programmingtechie.inventory_service.controller;
 
 
+import com.programmingtechie.inventory_service.dto.InventoryResponse;
 import com.programmingtechie.inventory_service.service.InventoryService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/inventory")
@@ -14,9 +17,9 @@ public class InventoryController {
 
     private final InventoryService inventoryService;
 
-    @GetMapping("/{sku-code")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public boolean inInStock(@PathVariable("sku-code") String skuCode) {
+    public List<InventoryResponse> inInStock(@RequestParam List<String> skuCode) {
         return inventoryService.isInStock(skuCode);
     }
 }
