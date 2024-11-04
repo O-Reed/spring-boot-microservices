@@ -53,7 +53,7 @@ public class OrderService {
                     .allMatch(InventoryResponse::isInStock);
             if(allProductsInStock){
                 orderRepository.save(order);
-                return "Order Placed Sucessfully";
+                return "Order Placed Successfully";
             } else {
                 throw new IllegalArgumentException("Product is not in stock, please try again");
             }
